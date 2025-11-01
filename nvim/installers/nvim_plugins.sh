@@ -12,7 +12,8 @@ if command -v nvim >/dev/null 2>&1; then
 
     echo "Fetching the nvim plugins ..."
 
-    cp -r ../config/nvim/ ~/.config/
+    current_path=$(pwd)
+    cp -r $current_path/nvim/config/nvim/ ~/.config/
 else
     echo "❌ You must install Neovim first"
 fi

@@ -3,13 +3,16 @@
 ORIG_USER=$SUDO_USER
 ORIG_HOME=$(eval echo "~$ORIG_USER")
 
-echo "Creating the catppuccin folder on tmux/plugins ..."
-mkdir -p $ORIG_HOME/.config/tmux/plugins/catppuccin/
+ORIG_USER=$SUDO_USER
+ORIG_HOME=$(eval echo "~$ORIG_USER")
 
-echo "Cloning the catppuccin theme on the tmux plugins folder ..."
-git clone https://github.com/catppuccin/tmux.git $ORIG_HOME/.config/tmux/plugins/catppuccin/
+echo "Creating the catppuccin folder ..."
+mkdir -p $ORIG_HOME/.config/tmux/plugins/catppuccin/tmux
 
-echo "Getting my tmux config from my repository and "
+echo "Cloning Catppuccin theme ..."
+git clone https://github.com/catppuccin/tmux.git $ORIG_HOME/.config/tmux/plugins/catppuccin/tmux
+
+echo "Turning the user the owner ..."
 chown -R $ORIG_USER:$ORIG_USER $ORIG_HOME/.config/tmux
 
 echo "Installing Tmuxifier ..."
@@ -34,6 +37,10 @@ add_line_if_missing "$LINE2" "$BASHRC"
 
 echo "Installing the TPM plugin ..."
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+current_path=$(pwd)
+echo $current_path
+cp $current_path/tmux/.tmux.conf ~/
 
 echo "Applying plugins ..."
 ~/.tmux/plugins/tpm/scripts/install_plugins.sh
