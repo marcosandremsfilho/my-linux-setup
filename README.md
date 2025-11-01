@@ -1,6 +1,6 @@
-# My Ubuntu Configurations
+# My Linux Configurations
 
-This repository was created to store the configurations I use on my Ubuntu PC, making it easier to restore and migrate to a new system or computer. If you want, feel free to clone this repository and use the configurations on your own setup!
+This repository was created to store the configurations I use on my Linux kernel OS based PC, making it easier to restore and migrate to a new system or computer. If you want, feel free to clone this repository and use the configurations on your own setup!
 
 ## What You'll Find Here
 
