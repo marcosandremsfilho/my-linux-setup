@@ -7,9 +7,10 @@ actual_path = os.getcwd()
 file_paths ={
              "Nvim": f"{actual_path}/nvim/installers/nvim_installation.sh",
              "Nvim Plugins": f"{actual_path}/nvim/installers/nvim_plugins.sh",
-             "Tmux": f"{actual_path}/tmux/installation/tmux_installation.sh",
-             "Tmux Plugin": f"{actual_path}/tmux/installation/tmux_plugins.sh",
-             "Vial Configuration": f"{actual_path}/split-keyboard/config_vial.sh",
+             "Tmux": f"{actual_path}/tmux/installers/tmux_installation.sh",
+             "Tmux Plugin": f"{actual_path}/tmux/installers/tmux_plugins.sh",
+             "Vial Configuration": f"{actual_path}/split-keyboard/installers/config_vial.sh",
+             "Grub Dual Boot": f"{actual_path}/grub/installers/grub_installer.sh"
             }
 
 class TerminalMenuCustom:
