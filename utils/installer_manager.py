@@ -10,7 +10,8 @@ file_paths ={
              "Tmux": f"{actual_path}/tmux/installers/tmux_installation.sh",
              "Tmux Plugin": f"{actual_path}/tmux/installers/tmux_plugins.sh",
              "Vial Configuration": f"{actual_path}/split-keyboard/installers/config_vial.sh",
-             "Grub Dual Boot": f"{actual_path}/grub/installers/grub_installer.sh"
+             "Grub Dual Boot": f"{actual_path}/grub/installers/grub_installer.sh",
+             "Bash Aliases": f"actual_path/bash/installers/bash_installer.sh",
             }
 
 class TerminalMenuCustom:
