@@ -12,6 +12,8 @@ file_paths ={
              "Vial Configuration": f"{actual_path}/split-keyboard/installers/config_vial.sh",
              "Grub Dual Boot": f"{actual_path}/grub/installers/grub_installer.sh",
              "Bash Aliases": f"{actual_path}/bash/installers/bash_installer.sh",
+             "Vim": f"{actual_path}/vim/installers/vim_installer.sh",
+             "Vim Plugins": f"{actual_path}/vim/installers/vim_plugins_installer.sh",
             }
 
 class TerminalMenuCustom:
