@@ -12,7 +12,7 @@ autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>120v.\+', -1)
 
 " Show line numbers
-set number
+set relativenumber
 
 " Status bar
 set laststatus=2
