@@ -33,5 +33,19 @@ vim.cmd("nnoremap gd gdzz")
 
 vim.opt.colorcolumn = "120"
 
+vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = "#F28FAD" })  -- Cor rosa no Catppuccin
+vim.api.nvim_command("match ExtraWhitespace /\\s\\+$/")
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  command = ":%s/\\s\\+$//e"
+})
+
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+
+vim.opt.clipboard = "unnamedplus"
+
 -- Setup lazy.nvim
 require("lazy").setup("plugins")
