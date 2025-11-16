@@ -14,7 +14,13 @@ return {
           end,
         },
         sources = {
-          { name = "nvim_lsp" },
+          { name = "nvim_lsp",
+            entry_filter = function(entry, ctx)
+            local label = entry:get_completion_item().label
+            -- oculta itens que começam com "_"
+              return not label:match("^_")
+            end,
+        },
           { name = "path" },
           { name = "buffer" },
         },
