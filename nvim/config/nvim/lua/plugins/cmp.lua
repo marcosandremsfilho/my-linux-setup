@@ -17,12 +17,15 @@ return {
           { name = "nvim_lsp",
             entry_filter = function(entry, ctx)
             local label = entry:get_completion_item().label
-            -- oculta itens que começam com "_"
               return not label:match("^_")
             end,
         },
           { name = "path" },
           { name = "buffer" },
+        },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
@@ -43,6 +46,12 @@ return {
                         end
                     end),
         }),
+
+        experimental = {
+                        ghost_text = {
+                        hl_group = "Comment",
+                      },
+                    },
       })
     end,
   },
