@@ -1,3 +1,5 @@
+math.randomseed(os.time() + vim.loop.hrtime())
+
 function get_random_item_from_a_list(list)
   if #list == 0 then
     return nil
