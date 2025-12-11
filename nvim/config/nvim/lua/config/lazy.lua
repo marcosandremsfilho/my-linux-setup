@@ -21,6 +21,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+vim.cmd("set number")
 vim.cmd("set relativenumber")
 vim.cmd("nnoremap <C-d> <C-d>zz")
 vim.cmd("nnoremap <C-u> <C-u>zz")
