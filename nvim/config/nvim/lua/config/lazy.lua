@@ -42,11 +42,39 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   command = ":%s/\\s\\+$//e"
 })
 
+-- Ensure files changed on disk are auto-reloaded in open buffers.
+-- Only check/reload when the buffer has no unsaved changes to avoid
+-- overwriting in-memory edits.
+vim.o.autoread = true
+
+local function try_checktime()
+  if vim.bo.modifiable and not vim.bo.modified then
+    -- silent! avoids noisy messages when nothing changed
+    vim.cmd("silent! checktime")
+  end
+end
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "BufWinEnter", "CursorHold", "CursorHoldI" }, {
+  pattern = "*",
+  callback = try_checktime,
+})
+
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+  pattern = "*",
+  callback = function()
+    vim.notify("File changed on disk: reloaded", vim.log.levels.INFO)
+  end,
+})
+
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 vim.opt.clipboard = "unnamedplus"
+
+-- Terminal mode navigation
+vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]], { desc = "Move left (terminal)" })
+vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]], { desc = "Move right (terminal)" })
 
 -- Setup lazy.nvim
 require("lazy").setup("plugins")

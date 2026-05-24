@@ -1,5 +1,19 @@
 local ai_term = nil
 
+local function get_opencode_command()
+  local cmd = vim.env.OPENCODE_CMD or vim.g.opencode_cmd
+  if cmd and cmd ~= vim.NIL then
+    return cmd
+  end
+
+  local bin = vim.env.OPENCODE_BIN or vim.g.opencode_bin or "opencode"
+  local port = vim.env.OPENCODE_PORT or vim.g.opencode_port or 3000
+
+  port = tostring(port)
+
+  return string.format('%s --port %s', bin, port)
+end
+
 return {
   "folke/snacks.nvim",
   opts = {
@@ -20,7 +34,8 @@ return {
           return
         end
 
-        ai_term = Snacks.terminal("/home/marcos/.opencode/bin/opencode --port 3000")
+        local cmd = get_opencode_command()
+        ai_term = Snacks.terminal(cmd)
       end,
       desc = "Toggle AI panel",
     },

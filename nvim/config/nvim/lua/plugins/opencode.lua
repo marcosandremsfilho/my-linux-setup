@@ -26,8 +26,43 @@
   },
   config = function()
     ---@type opencode.Opts
+    -- Provide server hooks that reuse the Snacks terminal helpers (if available)
+    -- If snacks exposed a command helper, use it so opencode and snacks start the same process.
+    local snacks_cmd = nil
+    if vim.g.opencode_snacks and vim.g.opencode_snacks.get_command then
+      snacks_cmd = vim.g.opencode_snacks.get_command()
+    end
+
     vim.g.opencode_opts = {
-      -- Your configuration, if any; goto definition on the type or field for details
+      server = {
+        -- Use the same command discovered by snacks. If available, provide start/stop/toggle
+        -- implementations that call snacks' helpers so only one opencode process is started.
+        start = function()
+          if vim.g.opencode_snacks and vim.g.opencode_snacks.start then
+            pcall(vim.g.opencode_snacks.start)
+            return
+          end
+          -- Fallback: attempt to open a terminal with the same command
+          if snacks_cmd then
+            vim.cmd("split | terminal " .. snacks_cmd)
+          end
+        end,
+        stop = function()
+          if vim.g.opencode_snacks and vim.g.opencode_snacks.stop then
+            pcall(vim.g.opencode_snacks.stop)
+          end
+        end,
+        toggle = function()
+          if vim.g.opencode_snacks and vim.g.opencode_snacks.start then
+            -- Start will toggle open the terminal. If already open, snacks' terminal.toggle handles it.
+            pcall(vim.g.opencode_snacks.start)
+            return
+          end
+          if snacks_cmd then
+            vim.cmd("split | terminal " .. snacks_cmd)
+          end
+        end,
+      },
     }
 
     vim.o.autoread = true -- Required for `opts.events.reload`
